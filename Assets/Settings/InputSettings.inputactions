@@ -27,7 +27,7 @@
                     "name": "JumpDirection",
                     "type": "Value",
                     "id": "5d3a869a-14e8-4bb4-9656-df79cd3093f1",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -102,6 +102,17 @@
                 },
                 {
                     "name": "",
+                    "id": "1b5f2525-ad2c-4403-870a-f8d794b809ce",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d136fc9b-bfd8-48b3-98cf-698d4be724fd",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -112,9 +123,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "LeftRight",
-                    "id": "b446e582-6c5e-43a4-bf36-b28906c624d9",
-                    "path": "1DAxis",
+                    "name": "WASD",
+                    "id": "3907711d-2dc5-4d8c-8ead-a1151253c8c0",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -123,8 +134,30 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "33eed92e-dc55-4288-a0a1-e78b5d8fdac9",
+                    "name": "up",
+                    "id": "27cb7fae-ca82-4a2e-8376-f6de5de3a953",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "d2e21ec6-4586-47ff-83a7-0d1023f0a167",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "5e400052-a481-4373-9cb2-c0b5b91a4779",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -134,8 +167,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "46b0e90c-508d-4833-bfb8-78c81c56bf16",
+                    "name": "right",
+                    "id": "e7f23008-c76a-418c-9113-9f47be600e93",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -145,37 +178,15 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "GamePad",
-                    "id": "0b7d13f7-dd80-4f2c-aef7-6e5673227c02",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "09d8e7e4-c2a5-4455-9960-76abaa8dc8cd",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "JumpDirection",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "66aa67e1-5a06-4fb3-b50b-c74f7d9e1173",
-                    "path": "<Gamepad>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "JumpDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "93950207-31db-428c-bd52-e8d0fbad8603",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "JumpDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

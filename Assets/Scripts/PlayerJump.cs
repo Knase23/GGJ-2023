@@ -13,8 +13,10 @@ public class PlayerJump : MonoBehaviour
 
     public InputActionReference jumpDirectionAction;
     // Start is called before the first frame update
-    public Vector3 direction = Vector3.up;
-    public float power = 1;
+    public float HorizontalPower = 1.5f;
+    public float VerticalPower = 1;
+
+    public bool IsGrounded = true;
     void Start()
     {
         _movement = GetComponent<PlayerMovement>();
@@ -24,20 +26,25 @@ public class PlayerJump : MonoBehaviour
 
     private void OnPerformed(InputAction.CallbackContext obj)
     {
-        _rigidbody.useGravity = true;
-        _movement.enabled = false;
-        float inputDirection = jumpDirectionAction.ToInputAction().ReadValue<float>(); //Save if we go 2D movement;
-        _rigidbody.velocity = direction * power;
+        //_rigidbody.useGravity = true;
+        //_movement.enabled = false;
+        //float inputDirection = jumpDirectionAction.ToInputAction().ReadValue<float>(); //Save if we go 2D movement;
+        if (IsGrounded)
+        {
+            _rigidbody.velocity = ((_rigidbody.velocity * HorizontalPower) + Vector3.up * VerticalPower) ;
+            IsGrounded = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        _movement.enabled = true;
-        _rigidbody.useGravity = false;
+        IsGrounded = true;
+        //_movement.enabled = true;
+        //_rigidbody.useGravity = false;
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawRay(transform.position , direction);
+        Gizmos.DrawRay(transform.position , Vector3.up);
     }
 }

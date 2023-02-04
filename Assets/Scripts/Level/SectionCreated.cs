@@ -26,7 +26,7 @@ namespace Level
         {
             for (int i = sections.Count -1; i >= 0; i--)
             {
-                if (sections[i].GetPosition() > CamerasPosition.position.y + sections[i].GetHeight())
+                if (sections[i].GetPosition() > CamerasPosition.position.y + sections[i].GetHeight() + MathF.Abs(CamerasPosition.position.z))
                 {
                     //Remove this
                     LevelSectionObject section = sections[i];

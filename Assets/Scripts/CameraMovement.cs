@@ -17,7 +17,13 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
+        //var targetPosition = new Vector3(transform.position.x, _playerCameraOffset.transform.position.y, transform.position.z);
+        //transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * _smoothingFactor);
+    }
+
+    private void FixedUpdate()
+    {
         var targetPosition = new Vector3(transform.position.x, _playerCameraOffset.transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * _smoothingFactor);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.fixedDeltaTime * _smoothingFactor);
     }
 }

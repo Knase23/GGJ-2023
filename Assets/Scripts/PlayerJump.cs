@@ -45,6 +45,6 @@ public class PlayerJump : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawRay(transform.position , direction);
+        Gizmos.DrawRay(transform.position , Vector3.up);
     }
 }

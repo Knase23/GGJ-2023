@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody _rigidbody;
     public float speed;
-
+    public float deadZone = 0.35f;
     public bool MovementEnabled = true;
     [Header("Gravity Stuff")]
     public bool GravityEnabled = true;
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 input = movementInput.action.ReadValue<Vector2>();
-        if (input.x > 0.1f || input.x < -0.1f)
+        if (input.x > deadZone || input.x < -deadZone)
         {
             input *= speed;
             Vector3 vdi = _rigidbody.velocity;

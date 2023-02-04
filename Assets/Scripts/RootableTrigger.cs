@@ -21,7 +21,20 @@ public class RootableTrigger : MonoBehaviour
             //    castDirection = Vector3.left;
             //}
             Debug.DrawRay(other.transform.position, transform.position - other.transform.position, Color.red, 0.4f);
-            if (Physics.Raycast(other.transform.position, transform.position - other.transform.position, out RaycastHit hit, Mathf.Infinity))
+
+
+            Vector3 directionToOther = transform.position - other.transform.position;
+            if (Vector3.Dot(directionToOther, Vector3.right) > 0)
+            {
+                directionToOther = Vector3.right;
+            }
+            else
+            {
+                directionToOther = Vector3.left;
+            }
+            Debug.DrawRay(other.transform.position, directionToOther, Color.magenta, 0.4f);
+            
+            if (Physics.Raycast(other.transform.position, directionToOther, out RaycastHit hit, Mathf.Infinity))
             {
                 Debug.Log("raycast to wall hit");
                 other.GetComponent<PlayerRooting>().RootToSurface(hit.point, hit.normal);

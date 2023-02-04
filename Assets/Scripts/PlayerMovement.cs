@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rigidbody;
     public float speed;
 
+    public bool MovementEnabled = true;
     [Header("Gravity Stuff")]
     public bool GravityEnabled = true;
     [SerializeField] private float _neutralGravity = 9.82f;
@@ -48,8 +49,10 @@ public class PlayerMovement : MonoBehaviour
         {
             input = new Vector2(vdi.x, 0f);
         }
-        _rigidbody.velocity = new Vector3(input.x,vdi.y,0);
-
+        if (MovementEnabled)
+        {
+            _rigidbody.velocity = new Vector3(input.x, vdi.y, 0);
+        }
         GravityCheck();
     }
 
@@ -61,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
                 _targetGravity = _neutralGravity;
                 break;
             case GravityState.Light:
-                _targetGravity = _lightGravity;
+                _targetGravity = _neutralGravity;
                 break;
             case GravityState.Heavy:
                 _targetGravity = _heavyGravity;

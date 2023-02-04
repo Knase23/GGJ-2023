@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +18,8 @@ public class PlayerRooting : MonoBehaviour
     private Vector2 _rootNormal = Vector2.zero;
     public bool IsRooted = false;
 
+    private Coroutine _movementCoroutine = null;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -27,48 +30,48 @@ public class PlayerRooting : MonoBehaviour
 
     private void TriggerLaunch(InputAction.CallbackContext obj)
     {
+        if (!IsRooted) return;
         Vector2 direction = _inputDirection.action.ReadValue<Vector2>();
         if (!(direction.x > 0 && _rootNormal.x > 0) || !(direction.x < 0 && _rootNormal.x < 0))
         {
-
             direction = new Vector2(-direction.x, direction.y);
         }
-        if (direction.y > 0.25f)
+        if (direction.y > 0)
         {
-            if (_rootNormal.x > 0)
+            if (_rootNormal.x >= 0)
             {
-                var launchVector = Quaternion.Euler(0, 0, 45f) * _rootNormal;
-                Debug.Log(launchVector);
+                var launchVector = Quaternion.Euler(0, 0, 60f) * _rootNormal;
+                Debug.DrawRay(transform.position, launchVector * 10f, Color.red, 1f);
                 LaunchFromRooted(launchVector);
             }
             else
             {
-                var launchVector = Quaternion.Euler(0, 0, -45f) * _rootNormal;
-                Debug.Log(launchVector);
+                var launchVector = Quaternion.Euler(0, 0, -60f) * _rootNormal;
+                Debug.DrawRay(transform.position, launchVector * 10f, Color.red, 1f);
                 LaunchFromRooted(launchVector);
             }
         }
-        else if (direction.y < -0.25f)
+        else if (direction.y < 0)
         {
-            if (_rootNormal.x > 0)
+            if (_rootNormal.x >= 0)
             {
                 var launchVector = Quaternion.Euler(0, 0, -45f) * _rootNormal;
-                Debug.Log(launchVector);
+                Debug.DrawRay(transform.position, launchVector * 10f, Color.red, 1f);
                 LaunchFromRooted(launchVector);
             }
             else
             {
                 var launchVector = Quaternion.Euler(0, 0, 45f) * _rootNormal;
-                Debug.Log(launchVector);
+                Debug.DrawRay(transform.position, launchVector * 10f, Color.red, 1f);
                 LaunchFromRooted(launchVector);
             }
 
         }
-        else
-        {
-            Debug.Log(_rootNormal);
-            LaunchFromRooted(_rootNormal);
-        }
+        //else
+        //{
+        //    Debug.Log(_rootNormal);
+        //    LaunchFromRooted(_rootNormal);
+        //}
     }
 
     public void RootToSurface(Vector3 position, Vector2 normal) 
@@ -79,7 +82,7 @@ public class PlayerRooting : MonoBehaviour
 
         transform.position = position;
         _rb.velocity = Vector3.zero;
-        _movement.enabled = false;
+        _movement.MovementEnabled = false;
         _movement.GravityEnabled = false;
         _jump.enabled = false;
 
@@ -90,8 +93,18 @@ public class PlayerRooting : MonoBehaviour
     {
         IsRooted = false;
         _rb.velocity = direction * _launchPower;
-        _movement.enabled = true;
         _movement.GravityEnabled = true;
+        if (_movementCoroutine != null)
+        {
+            StopCoroutine(_movementCoroutine);
+        }
+        _movementCoroutine = StartCoroutine(ReEnableMovementAfterSeconds(0.3f));
+    }
+
+    private IEnumerator ReEnableMovementAfterSeconds(float time) 
+    {
+        yield return new WaitForSeconds(time);
+        _movement.MovementEnabled = true;
         _jump.enabled = true;
     }
 }

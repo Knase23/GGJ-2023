@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference fastFallInput;
     
     private Rigidbody _rigidbody;
-
     public float speed;
 
     [Header("Gravity Stuff")]

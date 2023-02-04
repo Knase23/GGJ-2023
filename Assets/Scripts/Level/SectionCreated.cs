@@ -61,7 +61,7 @@ namespace Level
             }
 
             spawnPosition -= _levelSectionsToChooseFrom[indexOfSection].GetHeight() / 2f;
-            var g =Instantiate(_levelSectionsToChooseFrom[indexOfSection].prefab, new Vector3(0,spawnPosition,0), quaternion.identity, transform);
+            var g =Instantiate(_levelSectionsToChooseFrom[indexOfSection].prefab, new Vector3(0,spawnPosition,transform.position.z), quaternion.identity, transform);
             latestCreated = g.GetComponent<LevelSectionObject>();
             latestCreated.reference = _levelSectionsToChooseFrom[indexOfSection];
             sections.Add(latestCreated);

@@ -8,6 +8,7 @@ public class RootableTrigger : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            if (Player.Instance.Jump.IsGrounded) return;
             Debug.Log("player entered trigger");
             //Vector3 castDirection = other.transform.position - transform.position;
 

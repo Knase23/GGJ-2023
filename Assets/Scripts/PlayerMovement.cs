@@ -42,17 +42,24 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 input = movementInput.action.ReadValue<Vector2>();
-        input *= speed;
+        if (input.x > 0.1f || input.x < -0.1f)
+        {
+            input *= speed;
+            Vector3 vdi = _rigidbody.velocity;
+            
+            if (Mathf.Abs(vdi.x) > Mathf.Abs(input.x))
+            {
+                if ((input.x > 0 && vdi.x > 0) || (input.x < 0 && vdi.x < 0))
+                {
+                    input = new Vector2(vdi.x, 0f);
+                }
+            }
+            if (MovementEnabled)
+            {
+                _rigidbody.velocity = new Vector3(input.x, vdi.y, 0);
+            }
+        }
 
-        Vector3 vdi = _rigidbody.velocity;
-        if (((input.x > 0 && vdi.x > 0) || (input.x < 0 && vdi.x < 0)) && Mathf.Abs(input.x) < Mathf.Abs(vdi.x))
-        {
-            input = new Vector2(vdi.x, 0f);
-        }
-        if (MovementEnabled)
-        {
-            _rigidbody.velocity = new Vector3(input.x, vdi.y, 0);
-        }
         GravityCheck();
     }
 

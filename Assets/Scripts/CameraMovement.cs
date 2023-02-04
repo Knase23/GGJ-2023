@@ -23,7 +23,15 @@ public class CameraMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var targetPosition = new Vector3(transform.position.x, _playerCameraOffset.transform.position.y, transform.position.z);
+
+        float targetXPos = transform.position.x;
+        var playerOffsetX = _playerCameraOffset.transform.position.x;
+        if (playerOffsetX > transform.position.x + 5 || playerOffsetX < transform.position.x -5)
+        {
+            targetXPos = playerOffsetX;
+        }
+        
+        var targetPosition = new Vector3(targetXPos, _playerCameraOffset.transform.position.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.fixedDeltaTime * _smoothingFactor);
     }
 }

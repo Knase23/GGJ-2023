@@ -13,8 +13,8 @@ public class PlayerJump : MonoBehaviour
 
     public InputActionReference jumpDirectionAction;
     // Start is called before the first frame update
-    public Vector3 direction = Vector3.up;
-    public float power = 1;
+    public float HorizontalPower = 1.5f;
+    public float VerticalPower = 1;
 
     public bool IsGrounded = true;
     void Start()
@@ -31,7 +31,7 @@ public class PlayerJump : MonoBehaviour
         //float inputDirection = jumpDirectionAction.ToInputAction().ReadValue<float>(); //Save if we go 2D movement;
         if (IsGrounded)
         {
-            _rigidbody.velocity = direction * power;
+            _rigidbody.velocity = ((_rigidbody.velocity * HorizontalPower) + Vector3.up * VerticalPower) ;
             IsGrounded = false;
         }
     }

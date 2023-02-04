@@ -28,11 +28,13 @@ public class PlayerMovement : MonoBehaviour
     private GravityState _playerGravity = GravityState.Neutral;
     private float _targetGravity = 9.82f;
 
+    private List<GravityState> _heldButtons = new List<GravityState>();
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        floatInput.ToInputAction().performed += SetToLight;
-        fastFallInput.ToInputAction().performed += SetToHeavy;
+        floatInput.ToInputAction().performed += FloatButtonDown;
+        fastFallInput.ToInputAction().performed += FallButtonDown;
         floatInput.ToInputAction().canceled += SetToNeutral;
         fastFallInput.ToInputAction().canceled += SetToNeutral;
     }
@@ -77,18 +79,39 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetToNeutral(InputAction.CallbackContext obj) 
     {
-        _playerGravity = GravityState.Neutral;
+        if (_heldButtons.Count == 0)
+        {
+            _playerGravity = GravityState.Neutral;
+        }
     }
 
-    private void SetToLight(InputAction.CallbackContext obj)
+    private void FloatButtonDown(InputAction.CallbackContext obj)
     {
+        _heldButtons.Add(GravityState.Light);
         _playerGravity = GravityState.Light;
     }
-
-    private void SetToHeavy(InputAction.CallbackContext obj)
+    private void FallButtonDown(InputAction.CallbackContext obj)
     {
+        _heldButtons.Add(GravityState.Heavy);
         _playerGravity = GravityState.Heavy;
     }
+    private void FloatButtonUp(InputAction.CallbackContext obj)
+    {
+        _heldButtons.Remove(GravityState.Light);
+        if (_heldButtons.Count == 0)
+        {
+            _playerGravity = GravityState.Neutral;
+        }
+    }
+    private void FallButtonUp(InputAction.CallbackContext obj)
+    {
+        _heldButtons.Remove(GravityState.Heavy);
+        if (_heldButtons.Count == 0)
+        {
+            _playerGravity = GravityState.Neutral;
+        }
+    }
+
 }
 
 public enum GravityState

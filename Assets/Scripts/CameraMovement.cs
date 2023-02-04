@@ -17,6 +17,7 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, _playerCameraOffset.transform.position, Time.deltaTime * _smoothingFactor);
+        var targetPosition = new Vector3(transform.position.x, _playerCameraOffset.transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * _smoothingFactor);
     }
 }

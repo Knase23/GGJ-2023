@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 input = movementInput.action.ReadValue<Vector2>();
         input *= speed;
         Vector3 vdi = _rigidbody.velocity;
-        _rigidbody.velocity = new Vector3(input.x,vdi.y,input.y);
+        _rigidbody.velocity = new Vector3(input.x,vdi.y,0);
 
         GravityCheck();
     }

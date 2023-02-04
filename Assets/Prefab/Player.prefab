@@ -274,7 +274,8 @@ GameObject:
   - component: {fileID: 3778782494689784815}
   - component: {fileID: 3778782494689784808}
   - component: {fileID: 3778782494689784784}
-  m_Layer: 0
+  - component: {fileID: 5253525875380273204}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,3 +398,21 @@ MonoBehaviour:
   HorizontalPower: 1.5
   VerticalPower: 6
   IsGrounded: 1
+--- !u!114 &5253525875380273204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778782494689784807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6614fad01f3c5d4895f271e2c32c602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpAction: {fileID: 548177515349581818, guid: bfafd4218ad29da4bbc9a94eee6afd87,
+    type: 3}
+  _inputDirection: {fileID: -5571914607512821930, guid: bfafd4218ad29da4bbc9a94eee6afd87,
+    type: 3}
+  _launchPower: 10
+  IsRooted: 0

@@ -32,10 +32,13 @@ namespace TutorialSequnces
                 //TODO: Here we could do other things to show, witch input has been completed
                 if (!forward && _currentInput.y > 0)
                     forward = true;
+                
                 if (!back && _currentInput.y < 0)
                     back = true;
+                
                 if (!left && _currentInput.x > 0)
                     left = true;
+                
                 if (!right && _currentInput.x < 0)
                     right = true;
 

@@ -242,7 +242,7 @@
                 {
                     "name": "",
                     "id": "a74128ad-606f-4145-a5a4-fff6da5e6ed4",
-                    "path": "*/{Back}",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -265,6 +265,17 @@
                     "name": "",
                     "id": "97361c61-f4c6-43d4-a0c8-ea0a84e830c5",
                     "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "481b1d75-a728-4a5f-a8b0-e0ddad4e829c",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

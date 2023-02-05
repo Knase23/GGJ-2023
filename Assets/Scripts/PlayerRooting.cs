@@ -15,6 +15,7 @@ public class PlayerRooting : MonoBehaviour
     [SerializeField] private float _launchPower = 10f;
     [SerializeField] private AudioCue _rootingSFX = null;
     [SerializeField] private AudioCue _launchSFX = null;
+    [SerializeField] private float _lockedMovementTime = 0.225f;
     private Rigidbody _rb = null;
     private PlayerMovement _movement = null;
     private PlayerJump _jump = null;

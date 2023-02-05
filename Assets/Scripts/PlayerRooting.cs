@@ -105,6 +105,7 @@ public class PlayerRooting : MonoBehaviour
             Player.Instance.Rotator.SnapToRotation(90);
         }
         _rootingSFX.PlayOneShot(AudioManager.Instance.SfxSource);
+        _jump.TriggerParticles();
         //rotate visuals to normal
     }
 

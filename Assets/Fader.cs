@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Fader : MonoBehaviour
@@ -12,7 +13,7 @@ public class Fader : MonoBehaviour
 
     private static Fader Instance;
 
-
+    public UnityEvent OnFadeComplete;
     public float timer;
     private float time;
     private bool To1;
@@ -25,6 +26,7 @@ public class Fader : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -72,6 +74,10 @@ public class Fader : MonoBehaviour
         {
             color.a = Mathf.Lerp(1,0,proc);
         }
-        imageToFade.color = color;    
+        imageToFade.color = color;
+        if (timer > time)
+        {
+            OnFadeComplete?.Invoke();
+        }
     }
 }

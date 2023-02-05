@@ -41,7 +41,7 @@ public class PlayerRooting : MonoBehaviour
         {
             direction = new Vector2(-direction.x, direction.y);
         }
-        if (direction.y > 0)
+        if (direction.y >= -0.3f)
         {
             if (_rootNormal.x >= 0)
             {
@@ -60,13 +60,13 @@ public class PlayerRooting : MonoBehaviour
         {
             if (_rootNormal.x >= 0)
             {
-                var launchVector = Quaternion.Euler(0, 0, -45f) * _rootNormal;
+                var launchVector = Quaternion.Euler(0, 0, -30f) * _rootNormal;
                 Debug.DrawRay(transform.position, launchVector * 10f, Color.red, 1f);
                 LaunchFromRooted(launchVector);
             }
             else
             {
-                var launchVector = Quaternion.Euler(0, 0, 45f) * _rootNormal;
+                var launchVector = Quaternion.Euler(0, 0, -30f) * _rootNormal;
                 Debug.DrawRay(transform.position, launchVector * 10f, Color.red, 1f);
                 LaunchFromRooted(launchVector);
             }

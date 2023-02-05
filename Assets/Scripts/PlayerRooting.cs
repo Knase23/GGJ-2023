@@ -10,6 +10,7 @@ public class PlayerRooting : MonoBehaviour
     [SerializeField] private InputActionReference _jumpAction;
     [SerializeField] private InputActionReference _inputDirection;
 
+    public Animator Animator;
     [SerializeField] private float _launchPower = 10f;
     private Rigidbody _rb = null;
     private PlayerMovement _movement = null;
@@ -78,6 +79,7 @@ public class PlayerRooting : MonoBehaviour
     {
         if (IsRooted) return;
         IsRooted = true;
+        Animator.SetBool("Rooted", true);
         _rootNormal = normal;
 
         transform.position = position;
@@ -96,6 +98,7 @@ public class PlayerRooting : MonoBehaviour
     public void LaunchFromRooted(Vector2 direction) 
     {
         IsRooted = false;
+        Animator.SetBool("Rooted",false);
         _rb.velocity = direction * _launchPower;
         _movement.GravityEnabled = true;
         if (_movementCoroutine != null)

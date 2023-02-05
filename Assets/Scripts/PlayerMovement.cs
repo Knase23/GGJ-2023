@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference movementInput;
     public InputActionReference floatInput;
     public InputActionReference fastFallInput;
-    
+
+    public Animator Animator;
     private Rigidbody _rigidbody;
     public float speed;
     public float deadZone = 0.35f;
@@ -64,7 +65,13 @@ public class PlayerMovement : MonoBehaviour
             if (MovementEnabled)
             {
                 _rigidbody.velocity = new Vector3(input.x, vdi.y, 0);
+                Animator.SetBool("Walking",true);
             }
+           
+        }
+        else
+        {
+            Animator.SetBool("Walking",false);
         }
 
         GravityCheck();

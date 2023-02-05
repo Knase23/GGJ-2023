@@ -8,7 +8,7 @@ public abstract class Task : MonoBehaviour
 
     protected virtual void OnTaskComplete()
     {
-        if(nextTask)
+        if(nextTask && nextTask != this)
             nextTask.StartTask();
             
     }

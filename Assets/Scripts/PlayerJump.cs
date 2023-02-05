@@ -23,6 +23,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private AudioCue _jumpSFX = null;
     [SerializeField] private AudioCue _landSFX = null;
 
+    public bool HasJumped = false;
     public bool IsGrounded = true;
     void Start()
     {
@@ -38,9 +39,9 @@ public class PlayerJump : MonoBehaviour
         //_movement.enabled = false;
         //float inputDirection = jumpDirectionAction.ToInputAction().ReadValue<float>(); //Save if we go 2D movement;
         if (IsGrounded)
-        {
-            
+        {    
             _rigidbody.velocity = ((_rigidbody.velocity * HorizontalPower) + transform.up * VerticalPower) ;
+            HasJumped = true;
             IsGrounded = false;
             if (_rigidbody.velocity.x >= 0)
             {
@@ -62,10 +63,11 @@ public class PlayerJump : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (IsGrounded)
+        if (IsGrounded && HasJumped)
         {
             Player.Instance.Rotator.SnapToRotation(0f);
             _landSFX.PlayOneShot(AudioManager.Instance.SfxSource);
+            HasJumped = false;
         }
         //_movement.enabled = true;
         //_rigidbody.useGravity = false;

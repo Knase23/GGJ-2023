@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Land
   m_EditorClassIdentifier: 
   _audioClips:
-  - {fileID: 8300000, guid: 85453304536fa5042b965126fdd54504, type: 3}
-  _volumeRange: {x: 1, y: 1}
+  - {fileID: 8300000, guid: f49fc2bd26bdf4c4e95419cecf5e25df, type: 3}
+  _volumeRange: {x: 0.5, y: 0.7}
   _pitchRange: {x: 0.95, y: 1.05}

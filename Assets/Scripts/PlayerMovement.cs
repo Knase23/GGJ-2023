@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _gravityLerpFactor = 5f;
     [SerializeField] private float _currentGravity = 9.82f;
 
+    [SerializeField] private AudioSource _patterAudioSource = null;
+
     private GravityState _playerGravity = GravityState.Neutral;
     private float _targetGravity = 9.82f;
 
@@ -34,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _wallRight = false;
     private bool _wallLeft = false;
+
+    private float _volumeTarget = 0f;
 
     void Start()
     {
@@ -67,14 +71,27 @@ public class PlayerMovement : MonoBehaviour
                 _rigidbody.velocity = new Vector3(input.x, vdi.y, 0);
                 Animator.SetBool("Walking",true);
             }
-           
+            if (input.x != 0 && Player.Instance.Jump.IsGrounded)
+            {
+                _volumeTarget = 1f;
+            }
+            else
+            {
+                _volumeTarget = 0f;
+            }
         }
         else
         {
+            _volumeTarget = 0f;
             Animator.SetBool("Walking",false);
         }
-
+        PatterLerp();
         GravityCheck();
+    }
+
+    private void PatterLerp() 
+    {
+        _patterAudioSource.volume = Mathf.Lerp(_patterAudioSource.volume, _volumeTarget, Time.deltaTime * 15f);
     }
 
     private void WallCheck()
@@ -108,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
                 _targetGravity = _neutralGravity;
                 break;
             case GravityState.Heavy:
-                _targetGravity = _heavyGravity;
+                _targetGravity = _neutralGravity;
                 break;
             default:
                 break;

@@ -111,6 +111,7 @@ public class PlayerRooting : MonoBehaviour
     public void LaunchFromRooted(Vector2 direction) 
     {
         IsRooted = false;
+        _jump.HasJumped = true;
         Animator.SetBool("Rooted",false);
         _rb.velocity = direction * _launchPower;
         _movement.GravityEnabled = true;

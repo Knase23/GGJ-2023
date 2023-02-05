@@ -5,6 +5,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using static UnityEngine.UI.Image;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -30,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     private List<GravityState> _heldButtons = new List<GravityState>();
 
+    private bool _wallRight = false;
+    private bool _wallLeft = false;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -41,7 +45,10 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        WallCheck();
         Vector2 input = movementInput.action.ReadValue<Vector2>();
+        if (_wallLeft && input.x < 0) input.x = 0f;
+        else if (_wallRight && input.x > 0) input.x = 0f;
         if (input.x > deadZone || input.x < -deadZone)
         {
             input *= speed;
@@ -61,6 +68,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         GravityCheck();
+    }
+
+    private void WallCheck()
+    {
+        if (Physics.Raycast(transform.position, Vector3.right, 0.6f))
+        {
+            _wallRight = true;
+        }
+        else
+        {
+            _wallRight = false;
+        }
+        if (Physics.Raycast(transform.position, Vector3.left, 0.6f))
+        {
+            _wallLeft = true;
+        }
+        else
+        {
+            _wallLeft = false;
+        }
     }
 
     private void GravityCheck() 

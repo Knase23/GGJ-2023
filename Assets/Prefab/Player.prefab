@@ -425,6 +425,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6090298014000701665, guid: e1d7b5d13f832314a9e3500152d02337,
         type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090298014000701665, guid: e1d7b5d13f832314a9e3500152d02337,
+        type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}

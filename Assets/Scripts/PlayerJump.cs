@@ -22,6 +22,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private List<Transform> _isGroundedRaycastOrigins = new List<Transform>();
     [SerializeField] private AudioCue _jumpSFX = null;
     [SerializeField] private AudioCue _landSFX = null;
+    [SerializeField] private ParticleSystem _landingParticles = null;
 
     public bool HasJumped = false;
     public bool IsGrounded = true;
@@ -31,6 +32,11 @@ public class PlayerJump : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _rooting = GetComponent<PlayerRooting>();
         jumpAction.ToInputAction().performed += OnPerformed;
+    }
+
+    public void TriggerParticles()
+    {
+        _landingParticles.Play();
     }
 
     private void OnPerformed(InputAction.CallbackContext obj)
@@ -67,6 +73,7 @@ public class PlayerJump : MonoBehaviour
         {
             Player.Instance.Rotator.SnapToRotation(0f);
             _landSFX.PlayOneShot(AudioManager.Instance.SfxSource);
+            TriggerParticles();
             HasJumped = false;
         }
         //_movement.enabled = true;

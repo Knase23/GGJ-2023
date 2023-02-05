@@ -281,6 +281,7 @@ MonoBehaviour:
   - {fileID: 1835879738}
   _jumpSFX: {fileID: 11400000, guid: 7cf8765f53a80f34db79bbc52a376664, type: 2}
   _landSFX: {fileID: 11400000, guid: e1bf605917387c04e94fb1c119f7fc6d, type: 2}
+  _landingParticles: {fileID: 1644472643901518967}
   HasJumped: 0
   IsGrounded: 1
 --- !u!114 &5253525875380273204
@@ -422,6 +423,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3778782493185528519}
     m_Modifications:
+    - target: {fileID: 6090298014000701665, guid: e1d7b5d13f832314a9e3500152d02337,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090298014000701665, guid: e1d7b5d13f832314a9e3500152d02337,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090298014000701665, guid: e1d7b5d13f832314a9e3500152d02337,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090298014000701665, guid: e1d7b5d13f832314a9e3500152d02337,
+        type: 3}
+      propertyPath: ClampVelocityModule.drag.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090298014000701665, guid: e1d7b5d13f832314a9e3500152d02337,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6090298014000701666, guid: e1d7b5d13f832314a9e3500152d02337,
         type: 3}
       propertyPath: m_RootOrder
@@ -490,6 +516,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4780363121634022550}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1644472643901518967 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6090298014000701665, guid: e1d7b5d13f832314a9e3500152d02337,
+    type: 3}
+  m_PrefabInstance: {fileID: 4780363121634022550}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6109237927044722504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -507,6 +539,21 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Scale.x
       value: 1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 2684858584089943245, guid: baf056007c937db408e4fda39c5ddac1,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2684858584089943245, guid: baf056007c937db408e4fda39c5ddac1,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2684858584089943245, guid: baf056007c937db408e4fda39c5ddac1,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2684858584089943246, guid: baf056007c937db408e4fda39c5ddac1,
         type: 3}
       propertyPath: m_RootOrder
@@ -515,17 +562,17 @@ PrefabInstance:
     - target: {fileID: 2684858584089943246, guid: baf056007c937db408e4fda39c5ddac1,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2684858584089943246, guid: baf056007c937db408e4fda39c5ddac1,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2684858584089943246, guid: baf056007c937db408e4fda39c5ddac1,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2684858584089943246, guid: baf056007c937db408e4fda39c5ddac1,
         type: 3}

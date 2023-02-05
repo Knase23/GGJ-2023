@@ -121,7 +121,7 @@ public class PlayerRooting : MonoBehaviour
         {
             StopCoroutine(_movementCoroutine);
         }
-        _movementCoroutine = StartCoroutine(ReEnableMovementAfterSeconds(0.3f));
+        _movementCoroutine = StartCoroutine(ReEnableMovementAfterSeconds(_lockedMovementTime));
         if (direction.x >= 0)
         {
             Player.Instance.Rotator.TriggerFlip(true, true);

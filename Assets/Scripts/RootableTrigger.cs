@@ -36,7 +36,7 @@ public class RootableTrigger : MonoBehaviour
             }
             Debug.DrawRay(other.transform.position, directionToOther, Color.magenta, 0.4f);
             
-            if (Physics.Raycast(other.transform.position, directionToOther, out RaycastHit hit, Mathf.Infinity))
+            if (Physics.Raycast(other.transform.position, directionToOther, out RaycastHit hit, 1.5f))
             {
                 Debug.Log("raycast to wall hit");
                 other.GetComponent<PlayerRooting>().RootToSurface(hit.point, hit.normal);

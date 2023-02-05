@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class TriggerAddAsParent : MonoBehaviour
@@ -12,6 +13,7 @@ public class TriggerAddAsParent : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         other.transform.SetParent(null);
+        other.transform.rotation = Quaternion.identity;
     }
 
 }

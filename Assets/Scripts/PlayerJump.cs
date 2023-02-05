@@ -38,7 +38,7 @@ public class PlayerJump : MonoBehaviour
         if (IsGrounded)
         {
             
-            _rigidbody.velocity = ((_rigidbody.velocity * HorizontalPower) + Vector3.up * VerticalPower) ;
+            _rigidbody.velocity = ((_rigidbody.velocity * HorizontalPower) + transform.up * VerticalPower) ;
             IsGrounded = false;
             if (_rigidbody.velocity.x >= 0)
             {
@@ -78,7 +78,7 @@ public class PlayerJump : MonoBehaviour
         bool isGrounded = false;
         foreach (var origin in _isGroundedRaycastOrigins)
         {
-            if (Physics.Raycast(origin.transform.position, Vector3.down, 0.75f))
+            if (Physics.Raycast(origin.transform.position, -transform.up, 0.75f))
             {
                 isGrounded = true;
             }

@@ -20,6 +20,8 @@ public class PlayerJump : MonoBehaviour
     public float VerticalPower = 1;
 
     [SerializeField] private List<Transform> _isGroundedRaycastOrigins = new List<Transform>();
+    [SerializeField] private AudioCue _jumpSFX = null;
+    [SerializeField] private AudioCue _landSFX = null;
 
     public bool IsGrounded = true;
     void Start()
@@ -48,7 +50,7 @@ public class PlayerJump : MonoBehaviour
             {
                 Player.Instance.Rotator.TriggerFlip(false, false);
             }
-
+            _jumpSFX.PlayOneShot(AudioManager.Instance.SfxSource);
         }
     }
     private void Update()
@@ -63,6 +65,7 @@ public class PlayerJump : MonoBehaviour
         if (IsGrounded)
         {
             Player.Instance.Rotator.SnapToRotation(0f);
+            _landSFX.PlayOneShot(AudioManager.Instance.SfxSource);
         }
         //_movement.enabled = true;
         //_rigidbody.useGravity = false;

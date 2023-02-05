@@ -273,6 +273,8 @@ MonoBehaviour:
   _isGroundedRaycastOrigins:
   - {fileID: 825128285}
   - {fileID: 1835879738}
+  _jumpSFX: {fileID: 11400000, guid: 7cf8765f53a80f34db79bbc52a376664, type: 2}
+  _landSFX: {fileID: 11400000, guid: e1bf605917387c04e94fb1c119f7fc6d, type: 2}
   IsGrounded: 1
 --- !u!114 &5253525875380273204
 MonoBehaviour:
@@ -292,6 +294,8 @@ MonoBehaviour:
     type: 3}
   Animator: {fileID: 1455674198973065626}
   _launchPower: 40
+  _rootingSFX: {fileID: 11400000, guid: feb460b8b0ef0694baa6bd477e7e5242, type: 2}
+  _launchSFX: {fileID: 11400000, guid: 7cf8765f53a80f34db79bbc52a376664, type: 2}
   IsRooted: 0
 --- !u!114 &686973598
 MonoBehaviour:

@@ -10,8 +10,11 @@ public class PlayerRooting : MonoBehaviour
     [SerializeField] private InputActionReference _jumpAction;
     [SerializeField] private InputActionReference _inputDirection;
 
+
     public Animator Animator;
     [SerializeField] private float _launchPower = 10f;
+    [SerializeField] private AudioCue _rootingSFX = null;
+    [SerializeField] private AudioCue _launchSFX = null;
     private Rigidbody _rb = null;
     private PlayerMovement _movement = null;
     private PlayerJump _jump = null;
@@ -101,6 +104,7 @@ public class PlayerRooting : MonoBehaviour
         {
             Player.Instance.Rotator.SnapToRotation(90);
         }
+        _rootingSFX.PlayOneShot(AudioManager.Instance.SfxSource);
         //rotate visuals to normal
     }
 
@@ -123,6 +127,7 @@ public class PlayerRooting : MonoBehaviour
         {
             Player.Instance.Rotator.TriggerFlip(false, true);
         }
+        _launchSFX.PlayOneShot(AudioManager.Instance.SfxSource);
     }
 
     private IEnumerator ReEnableMovementAfterSeconds(float time) 

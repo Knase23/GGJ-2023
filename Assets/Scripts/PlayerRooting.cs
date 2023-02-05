@@ -86,6 +86,10 @@ public class PlayerRooting : MonoBehaviour
         _movement.GravityEnabled = false;
         _jump.enabled = false;
 
+        if (_movementCoroutine != null)
+        {
+            StopCoroutine(_movementCoroutine);
+        }
         //rotate visuals to normal
     }
 

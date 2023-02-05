@@ -209,6 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61085a2d5722bf6489869e910e4deea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RestartAction: {fileID: 8720121214943807053, guid: bfafd4218ad29da4bbc9a94eee6afd87,
+    type: 3}
 --- !u!114 &3778782494689784815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +253,7 @@ MonoBehaviour:
   _lightGravity: 4
   _gravityLerpFactor: 10
   _currentGravity: 9.82
+  _patterAudioSource: {fileID: 0}
 --- !u!114 &3778782494689784784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +278,7 @@ MonoBehaviour:
   - {fileID: 1835879738}
   _jumpSFX: {fileID: 11400000, guid: 7cf8765f53a80f34db79bbc52a376664, type: 2}
   _landSFX: {fileID: 11400000, guid: e1bf605917387c04e94fb1c119f7fc6d, type: 2}
+  HasJumped: 0
   IsGrounded: 1
 --- !u!114 &5253525875380273204
 MonoBehaviour:

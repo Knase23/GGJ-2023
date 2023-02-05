@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +14,8 @@ public class Player : MonoBehaviour
     public PlayerJump Jump { get; private set; }
     public PlayerRooting Rooting { get; private set; }
     public PlayerRotator Rotator { get; private set; }
+
+    public InputActionReference RestartAction;
 
     private void Awake()
     {
@@ -28,5 +33,13 @@ public class Player : MonoBehaviour
         Jump = GetComponent<PlayerJump>();
         Rooting = GetComponent<PlayerRooting>();
         Rotator = GetComponent<PlayerRotator>();
+
+        RestartAction.ToInputAction().performed += Restart;
     }
+
+    private void Restart(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }

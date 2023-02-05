@@ -12,14 +12,18 @@ public class PlayerJump : MonoBehaviour
     private Rigidbody _rigidbody;
     private PlayerRooting _rooting;
     public InputActionReference jumpAction;
-
     public InputActionReference jumpDirectionAction;
+
+    public Animator Animator;
     // Start is called before the first frame update
     public float HorizontalPower = 1.5f;
     public float VerticalPower = 1;
 
     [SerializeField] private List<Transform> _isGroundedRaycastOrigins = new List<Transform>();
+    [SerializeField] private AudioCue _jumpSFX = null;
+    [SerializeField] private AudioCue _landSFX = null;
 
+    public bool HasJumped = false;
     public bool IsGrounded = true;
     void Start()
     {
@@ -35,20 +39,36 @@ public class PlayerJump : MonoBehaviour
         //_movement.enabled = false;
         //float inputDirection = jumpDirectionAction.ToInputAction().ReadValue<float>(); //Save if we go 2D movement;
         if (IsGrounded)
-        {
-            _rigidbody.velocity = ((_rigidbody.velocity * HorizontalPower) + Vector3.up * VerticalPower) ;
+        {    
+            _rigidbody.velocity = ((_rigidbody.velocity * HorizontalPower) + transform.up * VerticalPower) ;
+            HasJumped = true;
             IsGrounded = false;
+            if (_rigidbody.velocity.x >= 0)
+            {
+                Player.Instance.Rotator.TriggerFlip(true, false);
+            }
+            else
+            {
+                Player.Instance.Rotator.TriggerFlip(false, false);
+            }
+            _jumpSFX.PlayOneShot(AudioManager.Instance.SfxSource);
         }
     }
     private void Update()
     {
         CheckForGround();
+        Animator.SetBool("IsGrounded",IsGrounded);
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-
+        if (IsGrounded && HasJumped)
+        {
+            Player.Instance.Rotator.SnapToRotation(0f);
+            _landSFX.PlayOneShot(AudioManager.Instance.SfxSource);
+            HasJumped = false;
+        }
         //_movement.enabled = true;
         //_rigidbody.useGravity = false;
     }
@@ -63,7 +83,7 @@ public class PlayerJump : MonoBehaviour
         bool isGrounded = false;
         foreach (var origin in _isGroundedRaycastOrigins)
         {
-            if (Physics.Raycast(origin.transform.position, Vector3.down, 0.75f))
+            if (Physics.Raycast(origin.transform.position, -transform.up, 0.75f))
             {
                 isGrounded = true;
             }

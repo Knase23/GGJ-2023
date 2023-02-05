@@ -23,7 +23,6 @@ public class CameraMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         float targetXPos = transform.position.x;
         var playerOffsetX = _playerCameraOffset.transform.position.x;
         if (playerOffsetX > transform.position.x + 5 || playerOffsetX < transform.position.x -5)

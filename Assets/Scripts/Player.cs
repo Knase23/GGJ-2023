@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public PlayerMovement Movement { get; private set; }
     public PlayerJump Jump { get; private set; }
     public PlayerRooting Rooting { get; private set; }
+    public PlayerRotator Rotator { get; private set; }
 
     private void Awake()
     {
@@ -26,5 +27,6 @@ public class Player : MonoBehaviour
         Movement = GetComponent<PlayerMovement>();
         Jump = GetComponent<PlayerJump>();
         Rooting = GetComponent<PlayerRooting>();
+        Rotator = GetComponent<PlayerRotator>();
     }
 }

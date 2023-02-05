@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MovingBox : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class MovingBox : MonoBehaviour
     private float lerpTime;
     private Vector2 lerpStartPos;
 
-    public float speedToEachTarget;
+    public float timeToNextTarget = 1;
 
 
     public Vector2 velocity;
@@ -44,10 +45,10 @@ public class MovingBox : MonoBehaviour
 
         Vector2 distanceToTravel = (Vector2)targets[targetIndex].position - lerpStartPos;
 
-        velocity = distanceToTravel / speedToEachTarget;
+        velocity = distanceToTravel / timeToNextTarget;
         
         transform.position = lerpStartPos + velocity * lerpTime;
-        if (lerpTime < speedToEachTarget) return;
+        if (lerpTime < timeToNextTarget) return;
 
         lerpTime = 0;
         lerpStartPos = targets[targetIndex].position;

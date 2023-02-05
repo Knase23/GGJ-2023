@@ -131,6 +131,7 @@ public class PlayerRooting : MonoBehaviour
             Player.Instance.Rotator.TriggerFlip(false, true);
         }
         _launchSFX.PlayOneShot(AudioManager.Instance.SfxSource);
+        _jump.EnableFartTrail();
     }
 
     private IEnumerator ReEnableMovementAfterSeconds(float time) 

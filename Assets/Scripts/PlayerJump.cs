@@ -23,9 +23,12 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private AudioCue _jumpSFX = null;
     [SerializeField] private AudioCue _landSFX = null;
     [SerializeField] private ParticleSystem _landingParticles = null;
+    [SerializeField] private ParticleSystem _fartTrailParticles = null;
 
     public bool HasJumped = false;
     public bool IsGrounded = true;
+
+    private Coroutine _bigFart = null;
     void Start()
     {
         _movement = GetComponent<PlayerMovement>();
@@ -37,6 +40,23 @@ public class PlayerJump : MonoBehaviour
     public void TriggerParticles()
     {
         _landingParticles.Play();
+    }
+
+    public void EnableFartTrail() 
+    {
+        _fartTrailParticles.Play();
+        if (_bigFart != null)
+        {
+            StopCoroutine(_bigFart);
+        }
+        _bigFart = StartCoroutine(DisableFartTrail(0.8f));
+
+    }
+
+    private IEnumerator DisableFartTrail(float time) 
+    {
+        yield return new WaitForSeconds(time);
+        _fartTrailParticles.Stop();
     }
 
     private void OnPerformed(InputAction.CallbackContext obj)
@@ -58,8 +78,10 @@ public class PlayerJump : MonoBehaviour
                 Player.Instance.Rotator.TriggerFlip(false, false);
             }
             _jumpSFX.PlayOneShot(AudioManager.Instance.SfxSource);
+            EnableFartTrail();
         }
     }
+
     private void Update()
     {
         CheckForGround();

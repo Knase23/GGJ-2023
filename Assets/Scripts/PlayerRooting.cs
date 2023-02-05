@@ -90,6 +90,15 @@ public class PlayerRooting : MonoBehaviour
         {
             StopCoroutine(_movementCoroutine);
         }
+
+        if (normal.x > 0)
+        {
+            Player.Instance.Rotator.SnapToRotation(-90);
+        }
+        else
+        {
+            Player.Instance.Rotator.SnapToRotation(90);
+        }
         //rotate visuals to normal
     }
 
@@ -103,6 +112,14 @@ public class PlayerRooting : MonoBehaviour
             StopCoroutine(_movementCoroutine);
         }
         _movementCoroutine = StartCoroutine(ReEnableMovementAfterSeconds(0.3f));
+        if (direction.x >= 0)
+        {
+            Player.Instance.Rotator.TriggerFlip(true, true);
+        }
+        else
+        {
+            Player.Instance.Rotator.TriggerFlip(false, true);
+        }
     }
 
     private IEnumerator ReEnableMovementAfterSeconds(float time) 

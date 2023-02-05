@@ -38,6 +38,15 @@ public class PlayerJump : MonoBehaviour
         {
             _rigidbody.velocity = ((_rigidbody.velocity * HorizontalPower) + Vector3.up * VerticalPower) ;
             IsGrounded = false;
+            if (_rigidbody.velocity.x >= 0)
+            {
+                Player.Instance.Rotator.TriggerFlip(true, false);
+            }
+            else
+            {
+                Player.Instance.Rotator.TriggerFlip(false, false);
+            }
+
         }
     }
     private void Update()
@@ -48,7 +57,10 @@ public class PlayerJump : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
+        if (IsGrounded)
+        {
+            Player.Instance.Rotator.SnapToRotation(0f);
+        }
         //_movement.enabled = true;
         //_rigidbody.useGravity = false;
     }
